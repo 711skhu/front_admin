@@ -6,13 +6,6 @@
 
       <div class="problem-header__buttons">
 
-        <v-btn
-          @click="updateStudents"
-          flat icon color="green"
-        >
-          <v-icon>cached</v-icon>
-        </v-btn>
-
         <v-hover>
           <v-progress-circular
             style="cursor: pointer"
@@ -33,6 +26,13 @@
             </v-slide-y-transition>
           </v-progress-circular>
         </v-hover>
+        
+        <v-btn
+          @click="updateStudents"
+          flat icon color="green"
+        >
+          <v-icon>cached</v-icon>
+        </v-btn>
       </div>
     </div>
 
