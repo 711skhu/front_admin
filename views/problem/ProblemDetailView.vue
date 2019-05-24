@@ -27,7 +27,7 @@
       CodeEditor,
       MarkdownEditor
     },
-    data () {
+    data() {
       return {
         markdownString: "# header",
         themes: {
@@ -53,6 +53,7 @@
     width: 100%;
     height: 100%;
   }
+
   .content {
     width: 100%;
     height: 100%;
@@ -60,10 +61,12 @@
     display: flex;
     flex-direction: row;
   }
+
   .content__markdown {
     flex: 1 1 40%;
     border-right: gray solid 0.2rem;
   }
+
   .content__code {
     flex: 1 1 60%;
   }
