@@ -26,7 +26,7 @@
             </v-slide-y-transition>
           </v-progress-circular>
         </v-hover>
-        
+
         <v-btn
           @click="updateStudents"
           flat icon color="green"
