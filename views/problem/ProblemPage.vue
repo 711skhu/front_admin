@@ -1,9 +1,10 @@
 <template>
   <div class="problem-page">
     <div class="problem-header">
-      <problem-menu class="problem-header__problem-menu"
-                    :problem-details="problemDetails"
-                    v-model="currentProblem"
+      <problem-menu
+        class="problem-header__problem-menu"
+        :problem-details="problemDetails"
+        v-model="currentProblem"
       />
       <div class="setting">
         <group-button
