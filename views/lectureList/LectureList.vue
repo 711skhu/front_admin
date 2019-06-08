@@ -3,6 +3,11 @@
     <div class="item" v-for="lecture in lectures">
       <shadow-box>
         <lecture-item v-bind:lecture="lecture"></lecture-item>
+        <toggle
+          v-if="isProfessor"
+          v-bind:lecture="lecture"
+        >
+        </toggle>
       </shadow-box>
     </div>
   </div>
@@ -11,23 +16,27 @@
 <script>
   import LectureItem from "@/components/lecture/LectureItem"
   import ShadowBox from "@/components/lecture/ShadowBox"
+  import Toggle from "@/components/lecture/LectureToggle"
   import axios from 'axios'
 
   export default {
     components: {
       LectureItem,
-      ShadowBox
+      ShadowBox,
+      Toggle
     },
+    props: ['lectures'],
     data() {
       return {
-        lectures: []
+        lectures: this.lectures,
+        isProfessor: false
       }
     },
     created() {
-      axios.get('http://localhost:8080/server/lectures_professor.json')
-        .then((response)=>{
-          this.lectures = response.data;
-          console.log(this.lectures);
+      axios.get('http://localhost:8080/server/professorInfo.json')
+        .then((response) => {
+          this.isProfessor = response.data.isProfessor;
+          console.log(this.isProfessor);
         })
     }
   }
