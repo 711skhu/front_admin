@@ -24,24 +24,20 @@
         <div
           v-if="isError"
           class="ui error message">
-          <div class="header">Action Forbidden</div>
-          <p>You can only sign up for an account once with a given e-mail address.</p>
+          <div class="header">강의를 생성할 수 없습니다.</div>
+          <p>중복되는 강의명을 입력했습니다. 변경해주세요.</p>
         </div>
         <div
           class="ui submit button"
+          :class=" { disabled: isError } "
           v-on:click="addNewLecture"
         >강의 추가</div>
       </div>
     </form>
-    <pre>
-      {{ $data }}
-    </pre>
   </div>
 </template>
 
 <script>
-  //import axios from 'axios'
-
   export default {
     props: ['lectures'],
     data() {
@@ -55,37 +51,34 @@
     },
     methods: {
       addNewLecture: function () {
-        this.lectures.push({
-          title: this.newLectureName,
-          professor: this.professorName,
-          open: false
-        })
-        this.newLectureName = ''
+        if(this.newLectureName.length > 0) {
+          this.lectures.push({
+            title: this.newLectureName,
+            professor: this.professorName,
+            open: false
+          })
+          this.newLectureName = ''
+        } else {
+          alert('강의명을 입력해주세요.');
+        }
       }
     },
     computed: {
       isError() {
-        if(this.newLectureName.length > 0) {
-          let newLecture = this.newLectureName;
-          this.lectures.forEach(function (item) {
-            if(item.title === newLecture){
-              console.log(item.title + 'vs' + newLecture)
+        let newLectureTitle = this.newLectureName;
+          for(let i = 0; i < this.lectures.length; i++) {
+            if(newLectureTitle == this.lectures[i].title)
               return true;
-            }
-          })
-        }
-        return false;
+          }
       },
       isSuccess() {
-        if(this.newLectureName.length > 0) {
-          let newLecture = this.newLectureName;
-          this.lectures.forEach(function (item) {
-            if (item.title === newLecture) {
-              console.log(item.title === newLecture)
+        let newLectureTitle = this.newLectureName;
+        if(newLectureTitle.length > 0) {
+          for(let i = 0; i < this.lectures.length; i++) {
+            if(newLectureTitle == this.lectures[i].title)
               return false;
-            }
-            return true;
-          })
+          }
+          return true;
         }
       }
     }
@@ -94,7 +87,7 @@
 
 <style scoped>
   .addLecture {
-    margin: 0 15% 3% 15%;
+    margin: 0 15% 5% 15%;
   }
   .success {
     background-color: white !important;
@@ -104,5 +97,11 @@
   }
   .ui.button {
     float: right;
+  }
+  .error {
+    background-color: white !important;
+  }
+  .ui.error.message {
+    background-color: #fff6f6 !important;
   }
 </style>
