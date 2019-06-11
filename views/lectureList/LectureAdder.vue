@@ -30,7 +30,7 @@
         <div
           class="ui submit button"
           :class=" { disabled: isError } "
-          v-on:click="addNewLecture"
+          v-on:click="addLecture"
         >강의 추가</div>
       </div>
     </form>
@@ -39,7 +39,13 @@
 
 <script>
   export default {
-    props: ['lectures'],
+    props: {
+      lectures: {
+        type: Array,
+        required: true,
+        description: "lecture list"
+      }
+    },
     data() {
       return {
         newLectureName:'',
@@ -50,17 +56,8 @@
       }
     },
     methods: {
-      addNewLecture: function () {
-        if(this.newLectureName.length > 0) {
-          this.lectures.push({
-            title: this.newLectureName,
-            professor: this.professorName,
-            open: false
-          })
-          this.newLectureName = ''
-        } else {
-          alert('강의명을 입력해주세요.');
-        }
+      addLecture: function () {
+        this.$emit('child-event', this.newLectureName)
       }
     },
     computed: {

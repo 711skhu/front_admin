@@ -3,25 +3,41 @@
     <header-menu></header-menu>
     <h1 class="title">강의 목록</h1>
     <lecture-list :lectures="lectures"></lecture-list>
-    <lecture-add :lectures="lectures"></lecture-add>
+    <lecture-adder
+      :lectures="lectures"
+      @child-event="parentsMethod"
+    ></lecture-adder>
   </div>
 </template>
 
 <script>
   import HeaderMenu from '@/components/header/HeaderMenu'
   import LectureList from '@/admin/views/lectureList/LectureList'
-  import LectureAdd from '@/admin/views/lectureList/LectureAdd'
+  import LectureAdder from '@/admin/views/lectureList/LectureAdder'
   import axios from 'axios'
 
   export default {
     components: {
       HeaderMenu,
       LectureList,
-      LectureAdd
+      LectureAdder
     },
     data() {
       return {
         lectures: []
+      }
+    },
+    methods: {
+      parentsMethod: function (lectureName) {
+        if (lectureName.length > 0) {
+          this.lectures.push({
+            title: lectureName,
+            professor: '이승진',
+            open: false
+          })
+        } else {
+          alert('강의명을 입력해주세요.');
+        }
       }
     },
     created() {
