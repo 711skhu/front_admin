@@ -58,6 +58,7 @@
     methods: {
       addLecture: function () {
         this.$emit('addLecture', this.newLectureName)
+        this.newLectureName = ''
       }
     },
     computed: {

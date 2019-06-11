@@ -14,13 +14,15 @@
   import HeaderMenu from '@/components/header/HeaderMenu'
   import LectureList from '@/admin/views/lectureList/LectureList'
   import LectureAdder from '@/admin/views/lectureList/LectureAdder'
+  import Lecture from '@/models/lecture/Lecture';
   import axios from 'axios'
 
   export default {
     components: {
       HeaderMenu,
       LectureList,
-      LectureAdder
+      LectureAdder,
+      Lecture
     },
     data() {
       return {
@@ -30,11 +32,9 @@
     methods: {
       addNewLecture: function (lectureName) {
         if (lectureName.length > 0) {
-          this.lectures.push({
-            title: lectureName,
-            professor: '이승진',
-            open: false
-          })
+          this.lectures.push(
+            new Lecture(lectureName, '이승진')
+          )
         } else {
           alert('강의명을 입력해주세요.');
         }
