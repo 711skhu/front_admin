@@ -5,7 +5,7 @@
     <lecture-list :lectures="lectures"></lecture-list>
     <lecture-adder
       :lectures="lectures"
-      @child-event="parentsMethod"
+      @addLecture="addNewLecture"
     ></lecture-adder>
   </div>
 </template>
@@ -28,7 +28,7 @@
       }
     },
     methods: {
-      parentsMethod: function (lectureName) {
+      addNewLecture: function (lectureName) {
         if (lectureName.length > 0) {
           this.lectures.push({
             title: lectureName,

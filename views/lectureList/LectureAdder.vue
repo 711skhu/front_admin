@@ -57,7 +57,7 @@
     },
     methods: {
       addLecture: function () {
-        this.$emit('child-event', this.newLectureName)
+        this.$emit('addLecture', this.newLectureName)
       }
     },
     computed: {

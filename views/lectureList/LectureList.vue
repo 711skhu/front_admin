@@ -24,11 +24,6 @@
         required: true,
         description: "lecture list"
       }
-    },
-    data() {
-      return {
-        lectures: this.lectures
-      }
     }
   }
 </script>
