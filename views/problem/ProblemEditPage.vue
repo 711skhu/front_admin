@@ -21,11 +21,16 @@
       <h3>문제 상세</h3>
 
       <template v-for="(problemDetail, index) in problemDetails">
-        <problem-detail-item
-          :key="index"
-          :detail="problemDetail"
-          @edit="editDetail(index)"
-        ></problem-detail-item>
+        <v-layout>
+          <problem-detail-item
+            :key="index"
+            :detail="problemDetail"
+            @edit="editDetail(index)"
+          ></problem-detail-item>
+          <v-btn icon flat @click="deleteDetail(index)">
+            <v-icon>close</v-icon>
+          </v-btn>
+        </v-layout>
         <v-divider
           v-if="index + 1 !== problemDetails.length"
         ></v-divider>
@@ -115,6 +120,9 @@
         this.notifyUpdate('input', this.problem, p => {
           p.title = value;
         })
+      },
+      deleteDetail(index) {
+        this.problemDetails.splice(index, 1);
       }
     },
     computed: {
