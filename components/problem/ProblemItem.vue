@@ -2,7 +2,12 @@
   <problem-item-box class="problem-box">
     <div class="problem-header">
 
-      <h2>{{problem.title}}</h2>
+      <v-layout align-baseline>
+        <h2>{{problem.title}}</h2>
+        <v-btn flat icon @click="$emit('editClick')">
+          <v-icon dark>edit</v-icon>
+        </v-btn>
+      </v-layout>
 
       <div class="problem-header__buttons">
 
@@ -11,8 +16,8 @@
             style="cursor: pointer"
             slot-scope="{ hover }"
             :rotate="-90"
-            :size="50"
-            :width="3"
+            :size="80"
+            :width="5"
             :value="solvedStudent.length / students.length * 100"
             @click="showScore = !showScore"
           >
